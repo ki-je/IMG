@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>움트라 세계관 가이드</title>
+  <style>
+    /* 깔끔한 모던 고딕 폰트 적용 */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+    :root {
+      --primary: #2563eb;       /* 모던한 블루 포인트 */
+      --primary-dark: #1e3a8a;
+      --bg-body: #f8fafc;       /* 아주 밝은 쿨그레이 배경 */
+      --bg-surface: #ffffff;    /* 카드/패널 화이트 배경 */
+      --text-main: #1e293b;     /* 진한 네이비그레이 텍스트 */
+      --text-muted: #64748b;    /* 서브 텍스트 */
+      --border: #e2e8f0;        /* 얇고 깔끔한 테두리 */
+      --danger: #ef4444;        /* 경고/상태 표시용 레드 */
+    }
+
+    * { box-sizing: border-box; }
+   
+    body {
+      margin: 0;
+      color: var(--text-main);
+      background-color: var(--bg-body);
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 메인 히어로 배너 (레퍼런스의 시원한 랜딩페이지 상단 느낌) */
+    .hero-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #93c5fd;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #94a3b8;
+      font-size: 1.125rem;
+      font-weight: 400;
+    }
+
+    /* 컨텐츠 래퍼 */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    section { margin-bottom: 80px; }
+
+    /* 섹션 타이틀 */
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 32px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+   
+    h2::before {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* 컴포넌트: 상태 박스 (Alert UI 스타일) */
+    .status-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid var(--primary);
+      padding: 24px 32px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.05);
+    }
+    .status-box strong { color: var(--primary-dark); font-size: 18px; display: block; margin-bottom: 8px; }
+    .status-box p { margin: 0; color: #334155; }
+
+    /* 컴포넌트: 대륙 카드 */
+    .continent-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+   
+    .continent-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    h3 { margin: 0; font-size: 24px; color: var(--text-main); }
+    .continent-type {
+      background: #f1f5f9;
+      color: var(--text-muted);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .continent-card > p { color: var(--text-muted); margin: 0 0 24px 0; }
+
+    /* 컴포넌트: 그리드 레이아웃 */
+    .grid-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card-item {
+      padding: 24px;
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    .card-item:hover {
+      background: var(--bg-surface);
+      border-color: #cbd5e1;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      transform: translateY(-2px);
+    }
+
+    h4 { margin: 0 0 8px; font-size: 18px; color: var(--text-main); }
+    .card-item p { margin: 0; color: var(--text-muted); font-size: 14px; }
+    .card-item small {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      background: #eff6ff;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* 컴포넌트: 태그 (Pill UI) */
+    .race-tags { display: flex; flex-wrap: wrap; gap: 12px; }
+    .race-tags span {
+      padding: 8px 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      color: var(--text-main);
+      font-weight: 500;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    /* 컴포넌트: 데이터 테이블 (기업형 UI) */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+   
+    table { width: 100%; min-width: 680px; border-collapse: collapse; }
+    th, td { padding: 18px 24px; text-align: left; }
+    th {
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border);
+    }
+    td {
+      border-bottom: 1px solid var(--border);
+      color: #475569;
+      font-size: 15px;
+    }
+    td:first-child { color: var(--text-main); font-weight: 700; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+
+    /* 배경 섹션 아이콘 박스 형태 */
+    .bg-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .info-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .info-box h3 { color: var(--primary); margin-bottom: 12px; }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #0f172a;
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section { padding: 60px 20px; }
+      .bg-info-grid { grid-template-columns: 1fr; }
+      .continent-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 랜딩페이지 형식의 히어로 영역 -->
+  <header class="hero-section">
+    <div class="eyebrow">World Guide</div>
+    <h1>움트라</h1>
+    <p class="subtitle">마왕 토벌 이후, 남겨진 저주와 세계의 기록</p>
+  </header>
+
+  <main class="container">
+   
+    <section>
+      <h2>현재</h2>
+      <div class="status-box">
+        <strong>{user}는 마왕을 토벌한 용사 파티의 일원이다.</strong>
+        <p>마왕은 쓰러졌으며, 전쟁은 끝났다. 그러나 마왕 토벌의 대가로 파티원 전원에게 영구적인 저주가 남았다.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>대륙</h2>
+     
+      <!-- 대륙 1 -->
+      <div class="continent-card">
+        <div class="continent-header">
+          <h3>프라이델</h3>
+          <span class="continent-type">프라이델 연방</span>
+        </div>
+        <p>여러 종족이 살아가는 다종족 연방국가. 각 주는 자치권을 가지며, 연방의회에서 공동 안건을 처리한다.</p>
+       
+        <div class="grid-wrap">
+          <article class="card-item">
+            <h4>아스텔리온주</h4>
+            <p>연방 수도 · 정치/외교 중심</p>
+            <small>아스텔리아</small>
+          </article>
+          <article class="card-item">
+            <h4>벨디아주</h4>
+            <p>농업 · 식량 공급 핵심 · 평원</p>
+            <small>하르벤</small>
+          </article>
+          <article class="card-item">
+            <h4>카르나스주</h4>
+            <p>광업 · 제련 산업 · 산악 · 드워프 다수</p>
+            <small>이른가르드</small>
+          </article>
+          <article class="card-item">
+            <h4>실바렌주</h4>
+            <p>대삼림 · 엘프 주요 거주지 · 마법 연구</p>
+            <small>에류시안</small>
+          </article>
+          <article class="card-item">
+            <h4>토르바인주</h4>
+            <p>해안 항구 · 무역/어업 · 인어 교류</p>
+            <small>마레스항</small>
+          </article>
+          <article class="card-item">
+            <h4>그리젠주</h4>
+            <p>북부 동토 · 수인 부족 다수 · 몬스터 빈번</p>
+            <small>프로센</small>
+          </article>
+          <article class="card-item">
+            <h4>루미에주</h4>
+            <p>남부 온난지역 · 관광/문화/예술 · 다종족 혼재</p>
+            <small>루미에라</small>
+          </article>
+        </div>
+      </div>
+
+      <!-- 대륙 2 -->
+      <div class="continent-card">
+        <div class="continent-header">
+          <h3>바엘로스</h3>
+          <span class="continent-type">마계</span>
+        </div>
+        <p>과거 제국이 존재했던 대륙. 제국의 몰락 이후 마기에 오염되었으며 마족의 본거지가 되었다.</p>
+       
+        <div class="grid-wrap">
+          <article class="card-item">
+            <h4>칼디스테아</h4>
+            <p>중앙 흑화지대 · 극심한 마기 침식</p>
+          </article>
+          <article class="card-item">
+            <h4>나락투른</h4>
+            <p>마왕성 · 마기 농도 최고 지역 · 마족의 권력 중심</p>
+          </article>
+          <article class="card-item">
+            <h4>외곽</h4>
+            <p>마기 농도가 상대적으로 낮음 · 마족 거주지 분포</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>종족</h2>
+      <div class="race-tags">
+        <span>인간</span><span>엘프</span><span>수인</span><span>드워프</span><span>마족</span><span>인어</span><span>드래곤</span><span>기타</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>능력</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>계열</th>
+              <th>기반</th>
+              <th>경지</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>검술</td>
+              <td>오러</td>
+              <td>소드 유저 → 소드 엑스퍼트 → 소드마스터 → 그랜드마스터</td>
+            </tr>
+            <tr>
+              <td>마법</td>
+              <td>마나</td>
+              <td>1~10서클</td>
+            </tr>
+            <tr>
+              <td>정령술</td>
+              <td>정령 계약</td>
+              <td>E → D → C → B → A → S(정령왕)</td>
+            </tr>
+            <tr>
+              <td>신성력</td>
+              <td>성력 / 신력</td>
+              <td>일반급 → 정예급 → 전설급 → 초월급</td>
+            </tr>
+            <tr>
+              <td>연금술</td>
+              <td>약초학 · 물약 · 치료</td>
+              <td>초급 → 하급 → 중급 → 상급 → 최상급</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>조직</h2>
+      <div class="grid-wrap">
+        <article class="card-item">
+          <h4>모험가 길드</h4>
+          <p>국가 위탁 · 공익 임무 · 토벌 중심</p>
+          <small>A~E / 전 지역 단일 조직</small>
+        </article>
+        <article class="card-item">
+          <h4>용병 길드</h4>
+          <p>의뢰 중개 · 개인 활동 · 다양한 임무</p>
+          <small>A~E / 지역별 독립 운영</small>
+        </article>
+        <article class="card-item">
+          <h4>정보 길드</h4>
+          <p>정보 매매</p>
+        </article>
+        <article class="card-item">
+          <h4>뒷세계 조직</h4>
+          <p>공인되지 않은 단체</p>
+          <small>정보 조직 · 암살 조직 등</small>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>배경</h2>
+      <div class="bg-info-grid">
+        <div class="info-box">
+          <h3>대현자</h3>
+          <p>최초의 마법사. 마나와 마법을 창조하여 세상에 전파했다. 움트라의 모든 마법은 대현자의 마법에 기반한다.</p>
+        </div>
+        <div class="info-box">
+          <h3>금제</h3>
+          <p>마법의 악용을 막기 위해 대현자가 자신의 존재와 마력을 대가로 수많은 금술을 봉인했다.</p>
+        </div>
+        <div class="info-box">
+          <h3>마기</h3>
+          <p>금술 사용 시 영혼에 깃드는 저주. 잠식이 진행될수록 지성을 잃으며, 비마족은 최종적으로 사망한다.</p>
+          <small style="display:block; margin-top:12px; color:#64748b;">* 마족은 마기에서 태어난 종족으로, 마기에 적응되어 있다.</small>
+        </div>
+        <div class="info-box">
+          <h3>마왕</h3>
+          <p>바엘로스의 강력한 마족. 마족들을 힘으로 규합하여 마계의 침공을 이끌었던 존재다. 현재는 {user}의 파티에게 토벌되었다.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    UMTRA · WORLD GUIDE &copy; 2026
+  </footer>
+</body>
+</html>
